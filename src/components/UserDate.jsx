@@ -13,7 +13,7 @@ import {
 } from "@ant-design/icons";
 
 import UserUpdateModel from "./UserUpdateModel.jsx";
-const UserDate = ({ user, addAndRemoveLike, isLiked, setUsers }) => {
+const UserDate = ({ user, addAndRemoveLike, isLiked, setUsers,deleteItems }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -40,6 +40,8 @@ const UserDate = ({ user, addAndRemoveLike, isLiked, setUsers }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+
 
   const likeTonggle = isLiked ? (
     <span
@@ -88,6 +90,7 @@ const UserDate = ({ user, addAndRemoveLike, isLiked, setUsers }) => {
           <EditOutlined />
         </span>,
         <span
+        onClick={()=>deleteItems(user.id)}
           key="delete"
           className="text-gray-500 text-xl hover:text-blue-400 transition-colors"
         >

@@ -33,7 +33,7 @@ const App = () => {
     fetchData()
   }, [])
 
-  if (firstLoad && loading) {
+  if (firstLoad && loading || users.length<=0) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spin size="large" tip="Loading users..." />
@@ -44,7 +44,7 @@ const App = () => {
   if (error) {
     return (
       <Alert
-        message="Error"
+      
         description={error}
         type="error"
         showIcon
@@ -52,6 +52,12 @@ const App = () => {
       />
     )
   }
+
+
+const deleteItems=(id)=>{
+  setUsers(prev=>prev.filter((u)=>u.id!==id))
+}
+
 
   return (
     <section className="p-4">
@@ -68,6 +74,7 @@ const App = () => {
               <Col key={user.id} xs={24} sm={24} md={8} lg={6} xl={6}>
                 <UserDate
                 setUsers={setUsers}
+                deleteItems={deleteItems}
                   user={user}
                   addAndRemoveLike={addAndRemoveLike}
                   isLiked={likedUserList.includes(user.id)}
